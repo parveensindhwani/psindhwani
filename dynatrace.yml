@@ -1,4 +1,4 @@
 ---
 - hosts: '{{ hosts }}'
-  roles:
-    - dynatrace
+  vars:
+    script_name:
