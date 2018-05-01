@@ -1,4 +1,15 @@
 ---
 - hosts: '{{ hosts }}'
-  roles:
-    - dynatrace
+  vars:
+    script_name: dynatrace_script.sh
+    target_dir: /root/
+  tasks:
+    - name: copy script to remote host
+      copy:
+        src: '{{ script_name }}'
+        dest: '{{ target_dir }}'
+        mode: 0755
+        force: no
+
+    - name: executing script
+      command: sh {{ target_dir }}/{{ script_name }} {{ action }} 
