@@ -1,0 +1,16 @@
+---
+- hosts: target_hosts
+  vars:
+    script_name: dynatrace_script.sh
+    target_dir: /tmp/
+  tasks:
+    - block:
+        - name: 'Copying the dynatrace script to /tmp on dest'
+          copy:
+           src: '{{ script_name }}'
+           dest: '{{ target_dir }}'
+           mode: 0755
+           force: no
+        - name: 'Executing script'
+          command: sh {{ target_dir }}{{ script_name }} {{ dynatrace_action }}
+

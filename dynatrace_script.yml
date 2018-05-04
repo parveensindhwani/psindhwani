@@ -1,0 +1,8 @@
+---
+- hosts: target_hosts
+  vars:
+    script_name: dynatrace_script.sh
+    target_dir: /tmp/
+  tasks:
+    - name: 'Executing script'
+      script: '{{target_dir}}{{script_name}} {{dynatrace_action}}'
